@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4>Product list</h4>
+        </div>
+        <div class="card-header">
+            <h4>{{changeStar}}</h4>
+        </div>
+        <div class="card-body">
+            <div class="row mb-2">
+                <label class="col-2">Filter:</label>
+                <input type="text" class="col-3" [(ngModel)]='listFilter'>
+                <div class="col-7"></div>
+            </div>
+            <div class="row mb-4">
+                <h2 class="col-12">Filter by: </h2>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Image
+                        </th>
+                        <th>Product</th>
+                        <th>Code</th>
+                        <th>Available</th>
+                        <th>Price </th>
+                        <th>5 Star Rating</th>
+                    </tr>
+                    <tr>
+                    <tr *ngFor="let p of products">
+                        <td><img [src]="p.imageUrl" [title]='p.productName|uppercase' width="50px"></td>
+                        <td><a href="/detail/{{p.productId}}">{{p.productName}}</a></td>
+                        <td>{{p.productCode}}</td>
+                        <td>{{p.releaseDate}}</td>
+                        <td>{{p.price|currency}}</td>
+                        <td>
+                            <app-star [rating]='p.starRating' (ratingClicked)='onRatingClicked($event)'></app-star>
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
